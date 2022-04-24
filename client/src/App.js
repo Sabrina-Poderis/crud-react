@@ -1,7 +1,7 @@
 import './App.css';
 import Create from './Create';
 import Edit from './Edit';
-import Show from './Show';
+import List from './List';
 
 function App() {
   return (

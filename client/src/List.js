@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Show(){
+export default function List(){
     return (
         <div class="container max-w-7xl mx-auto mt-8">
             <div class="mb-4">
