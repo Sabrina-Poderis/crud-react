@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Create(){
+    const [values, setValues] = useState()
+
+    const handleChangeValues = (value) => {
+        setValues((prevValue) => ({
+            ...prevValue,
+           [value.target.name]: value.target.name
+        }))
+    }
+
+    const handleClickButton = () => {
+        console.log(values)
+    }
+
     return (
         <div>
             <div class="flex flex-col items-center min-h-screen pt-6 bg-gray-100 sm:justify-center sm:pt-0">
@@ -19,8 +32,11 @@ export default function Create(){
                                 </label>
 
                                 <input
-                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                type="text" name="name" placeholder="Nome" />
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    type="text"
+                                    name="name"
+                                    placeholder="Nome"
+                                    onChange={handleChangeValues}/>
                             </div>
 
                             <div class="mt-4">
@@ -28,8 +44,12 @@ export default function Create(){
                                     Preço
                                 </label>
                                 <input
-                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                type="text" name="name" placeholder="R$ 0,00" />
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    type="text"
+                                    name="name"
+                                    placeholder="R$ 0,00"
+                                    onChange={handleChangeValues}
+                                />
                             </div>
 
                             <div class="mt-4">
@@ -37,17 +57,26 @@ export default function Create(){
                                     Categoria
                                 </label>
                                 <input
-                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                type="text" name="category" placeholder="Categoria" />
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    type="text"
+                                    name="category"
+                                    placeholder="Categoria"
+                                    onChange={handleChangeValues}
+                                />
                             </div>
 
                             <div class="flex items-center justify-start mt-4 gap-x-2">
-                                <button type="submit"
-                                    class="px-6 py-2 text-sm font-semibold rounded-md shadow-md text-sky-100 bg-sky-500 hover:bg-sky-700 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
+                                <button 
+                                    type="submit"
+                                    onClick={() => handleClickButton}
+                                    class="px-6 py-2 text-sm font-semibold rounded-md shadow-md text-sky-100 bg-sky-500 hover:bg-sky-700 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300"
+                                >
                                     Salvar
                                 </button>
-                                <button type="submit"
-                                    class="px-6 py-2 text-sm font-semibold text-gray-100 bg-gray-400 rounded-md shadow-md hover:bg-gray-600 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
+                                <button 
+                                    type="submit"
+                                    class="px-6 py-2 text-sm font-semibold text-gray-100 bg-gray-400 rounded-md shadow-md hover:bg-gray-600 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300"
+                                >
                                     Cancelar
                                 </button>
                             </div>
