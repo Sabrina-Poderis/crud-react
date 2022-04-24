@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Axios from "axios"
 
 export default function Create(){
     const [values, setValues] = useState()
@@ -6,12 +7,18 @@ export default function Create(){
     const handleChangeValues = (value) => {
         setValues((prevValue) => ({
             ...prevValue,
-           [value.target.name]: value.target.name
+           [value.target.name]: value.target.value
         }))
     }
 
     const handleClickButton = () => {
-        console.log(values)
+        Axios.post("http://127.0.0.1:3001/register", {
+            name: values.name,
+            cost: values.cost,
+            category: values.category,
+        }).then((response) => {
+            console.log(response)
+        })
     }
 
     return (
@@ -25,7 +32,7 @@ export default function Create(){
                     </div>
 
                     <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
-                        <form method="POST" action="#">
+                        {/* <form method="POST" action=""> */}
                             <div>
                                 <label class="block text-sm font-bold text-gray-700" for="name">
                                     Nome
@@ -46,7 +53,7 @@ export default function Create(){
                                 <input
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     type="text"
-                                    name="name"
+                                    name="cost"
                                     placeholder="R$ 0,00"
                                     onChange={handleChangeValues}
                                 />
@@ -67,8 +74,7 @@ export default function Create(){
 
                             <div class="flex items-center justify-start mt-4 gap-x-2">
                                 <button 
-                                    type="submit"
-                                    onClick={() => handleClickButton}
+                                    onClick={() => handleClickButton()}
                                     class="px-6 py-2 text-sm font-semibold rounded-md shadow-md text-sky-100 bg-sky-500 hover:bg-sky-700 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300"
                                 >
                                     Salvar
@@ -80,7 +86,7 @@ export default function Create(){
                                     Cancelar
                                 </button>
                             </div>
-                        </form>
+                        {/* </form> */}
                     </div>
                 </div>
             </div>

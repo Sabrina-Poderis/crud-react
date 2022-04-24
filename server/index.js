@@ -9,8 +9,15 @@ const db = mysql.createPool(db_connection)
 app.use(cors())
 app.use(express.json())
 
-app.get("/", (req, res) => {
-    res.send("hello world")
+app.post("/register", (req, res) => {
+    const {name} = req.body
+    const {cost} = req.body
+    const {category} = req.body
+
+    let SQL = "INSERT INTO games (name, cost, category, created_at) VALUES (?,?,?,now())"
+    db.query(SQL, [name, cost, category], (error, result) => {
+        console.log(error)
+    })
 })
 
 app.listen(3001, () => {
