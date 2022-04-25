@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Axios from "axios"
 
 export default function List(){
     const [listGames, setListGames] = useState()
 
     useEffect(() => {
-        Axios.get("http://127.0.0.1:3001/getGames").then((response) => {
+        Axios.get("http://127.0.0.1:3001/index").then((response) => {
             setListGames(response.data)
         })
     }, [])
@@ -15,7 +16,7 @@ export default function List(){
             <div class="mb-4">
                 <h1 class="font-serif text-3xl font-bold underline decoration-gray-400"> Scrim shop</h1>
                 <div class="flex justify-end">
-                    <button class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600">Criar jogo</button>
+                    <Link to="/create" className="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600">Criar jogo</Link>
                 </div>
             </div>
             <div class="flex flex-col">
@@ -73,13 +74,13 @@ export default function List(){
                                             </td>
 
                                             <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                                                <Link to={{ pathname: "/edit/"+ value.id }}  className="text-indigo-600 hover:text-indigo-900">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                                         stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                         d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                     </svg>
-                                                </a>
+                                                </Link>
                                             </td>
                                             <td class="text-sm font-medium leading-5 whitespace-no-wrap border-b border-gray-200 ">
                                                 <a href="#">
